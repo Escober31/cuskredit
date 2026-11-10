@@ -128,126 +128,12 @@
                         </svg>
                     </div>
                     <h3 class="text-lg font-bold text-white italic mb-1">No Vehicles in Inventory</h3>
-                    <p class="text-sm text-slate-400 max-w-sm mx-auto mb-6">There are currently no listed vehicles in
-                        Firestore. Click below to add your first vehicle to the catalog.</p>
-                    <div class="flex items-center justify-center gap-3">
-                        <button onclick="document.getElementById('toggle-add-form').click()"
-                            class="inline-flex items-center gap-2 bg-amber-500 text-black px-5 py-2 uppercase font-bold transform -skew-x-6 hover:bg-amber-400 transition text-xs shadow">
-                            <span class="inline-block skew-x-6">+ Add First Vehicle</span>
-                        </button>
-                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm mx-auto">There are currently no listed vehicles in inventory.</p>
                 </div>
 
             </div>
 
-            <!-- Add Car Form (hidden by default) -->
-            <div id="add-form" class="mt-8 hidden bg-[#0B1320] border border-slate-800 p-6 rounded-xl shadow-lg">
-                <h3 class="text-xl font-bold mb-4 text-white">Add Vehicle</h3>
 
-                <form id="add-vehicle-form" method="post" enctype="multipart/form-data" class="space-y-4">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <input name="make" placeholder="Brand Name (e.g. Toyota, Ford)" required
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                        <input name="model" placeholder="Model (e.g. Vios 1.5 G, Wildtrak)" required
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                        <input name="year" placeholder="Year Model (e.g. 2024)" required
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                        <input name="mileage" placeholder="Mileage (e.g. 35,000 mi)"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-
-                        <!-- CONDITION -->
-                        <select name="condition"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                            <option value="Second Hand">Second Hand</option>
-                            <option value="New">New</option>
-                        </select>
-
-                        <input name="price" placeholder="Selling Price (e.g. ₱650,000)" required
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                        <input name="downpayment" placeholder="Downpayment (e.g. 65,000)"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-
-                        <!-- STOCK 1–50 -->
-                        <select name="stock"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                            <option value="1">1 Unit</option>
-                            <option value="2">2 Units</option>
-                            <option value="3">3 Units</option>
-                            <option value="4">4 Units</option>
-                            <option value="5">5 Units</option>
-                            <option value="10">10 Units</option>
-                        </select>
-
-                        <!-- FUEL TYPE -->
-                        <select name="fuel_type"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                            <option value="Gasoline">Gasoline</option>
-                            <option value="Diesel">Diesel</option>
-                            <option value="Hybrid">Hybrid</option>
-                            <option value="Electric">Electric</option>
-                        </select>
-
-                        <input name="engine" placeholder="Engine (e.g. 1.5L Dual VVT-i)"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-
-                        <!-- TRANSMISSION -->
-                        <select name="transmission"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm">
-                            <option value="Automatic">Automatic</option>
-                            <option value="Manual">Manual</option>
-                        </select>
-
-                        <input name="location" placeholder="Location (e.g. Olongapo City Showroom)"
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg text-white focus:outline-none focus:border-amber-500 text-sm md:col-span-2">
-
-                        <!-- DESCRIPTION -->
-                        <textarea name="description" rows="4" placeholder="Full vehicle description..."
-                            class="bg-slate-900 border border-slate-700 p-2.5 rounded-lg md:col-span-2 text-white focus:outline-none focus:border-amber-500 text-sm"></textarea>
-
-                        <!-- Vehicle Photos (up to 8) -->
-                        <div class="md:col-span-2 space-y-2">
-                            <div class="flex items-center justify-between">
-                                <label class="text-xs uppercase text-slate-400 font-semibold flex items-center gap-2">
-                                    <span>Vehicle Photos</span>
-                                    <span class="text-amber-500 font-normal">(Max 8 photos)</span>
-                                </label>
-                                <span id="photo-count-badge" class="text-xs text-slate-400 font-mono">0 / 8
-                                    selected</span>
-                            </div>
-
-                            <div class="relative">
-                                <input type="file" id="vehicle-photos-input" name="photos" accept="image/*" multiple
-                                    class="w-full text-sm text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-slate-800 file:text-amber-400 hover:file:bg-slate-700 file:cursor-pointer cursor-pointer bg-slate-900 border border-slate-700 rounded-lg p-2 focus:outline-none focus:border-amber-500 transition">
-                            </div>
-
-                            <!-- Photo Previews Grid (Max 8 thumbnails) -->
-                            <div id="photos-preview-container"
-                                class="hidden grid grid-cols-4 sm:grid-cols-8 gap-2 pt-1"></div>
-
-                            <p id="photo-error-msg"
-                                class="hidden text-xs text-red-400 font-medium flex items-center gap-1.5 mt-1">
-                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Maximum 8 photos allowed. Only the first 8 photos were kept.</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 pt-2">
-                        <button type="submit" id="btn-submit-car" name="add_car"
-                            class="bg-amber-500 hover:bg-amber-400 text-black px-6 py-2 rounded-lg font-bold text-sm transition">
-                            ADD VEHICLE
-                        </button>
-                        <button type="button" id="cancel-add"
-                            class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-2 rounded-lg font-bold text-sm transition">
-                            Cancel
-                        </button>
-                    </div>
-                </form>
-            </div>
 
         </div>
     </main>
@@ -669,81 +555,15 @@
 
           ${car.description ? `<p class="text-xs text-slate-400 line-clamp-2 mb-4 leading-relaxed">${car.description}</p>` : ''}
 
-          <div class="mt-auto flex flex-wrap items-center justify-between pt-4 border-t border-slate-800 gap-2">
+          <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-800 gap-2">
             <span class="text-xl font-bold text-cyan-400">${car.price || '₱0'}</span>
 
-            <div class="flex flex-wrap items-center gap-1.5">
-              <a href="detail.html?id=${encodeURIComponent(car.id)}" class="bg-slate-800 hover:bg-amber-500 hover:text-black text-white text-xs font-semibold px-2.5 py-1.5 rounded transition">
-                Details
-              </a>
-              <button type="button" class="btn-edit-card bg-amber-500/15 hover:bg-amber-500 text-amber-400 hover:text-black border border-amber-500/30 text-xs font-semibold px-2.5 py-1.5 rounded transition" title="Edit vehicle in Firestore">
-                Edit
-              </button>
-              <button type="button" class="btn-sold-card ${isSold ? 'bg-emerald-600/80 hover:bg-emerald-500' : 'bg-purple-600/80 hover:bg-purple-500'} text-white text-xs font-semibold px-2.5 py-1.5 rounded transition" title="${isSold ? 'Mark as Available' : 'Mark as Sold'}">
-                ${isSold ? 'Mark Available' : 'Mark Sold'}
-              </button>
-              <button type="button" class="btn-delete-card bg-red-600/80 hover:bg-red-600 text-white text-xs font-semibold px-2.5 py-1.5 rounded transition" title="Delete from Firestore">
-                Delete
-              </button>
-            </div>
+            <a href="detail.html?id=${encodeURIComponent(car.id)}" class="bg-slate-800 hover:bg-amber-500 hover:text-black text-white text-xs font-semibold px-3 py-1.5 rounded transition">
+              Details
+            </a>
           </div>
         </div>
       `;
-
-            // 1. Edit Button listener
-            const editBtn = card.querySelector('.btn-edit-card');
-            if (editBtn) {
-                editBtn.addEventListener('click', () => openEditModal(car));
-            }
-
-            // 2. Mark Sold / Mark Available listener
-            const soldBtn = card.querySelector('.btn-sold-card');
-            if (soldBtn) {
-                soldBtn.addEventListener('click', async () => {
-                    const newStatus = isSold ? 'available' : 'sold';
-                    try {
-                        soldBtn.disabled = true;
-                        await updateDoc(doc(db, "cars", car.id), { status: newStatus });
-                        car.status = newStatus;
-                        showFlash('success', `Vehicle "${carTitle}" was marked as ${newStatus.toUpperCase()} in Firestore.`);
-                        loadCarsFromFirestore();
-                    } catch (err) {
-                        console.error('Error updating car status:', err);
-                        showFlash('danger', 'Failed to update status: ' + err.message);
-                    } finally {
-                        soldBtn.disabled = false;
-                    }
-                });
-            }
-
-            // 3. Delete Button listener
-            const deleteBtn = card.querySelector('.btn-delete-card');
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', () => {
-                    showConfirmModal({
-                        title: 'Delete Vehicle',
-                        message: `Are you sure you want to delete <span class="font-bold text-white">${carTitle}</span> from Firestore? This action permanently removes the record.`,
-                        confirmText: 'Yes, Delete',
-                        isDanger: true,
-                        onConfirm: async () => {
-                            try {
-                                await deleteDoc(doc(db, "cars", car.id));
-                                card.style.transition = 'all 0.3s ease';
-                                card.style.opacity = '0';
-                                card.style.transform = 'scale(0.95)';
-                                setTimeout(() => {
-                                    card.remove();
-                                    updateVehicleCount();
-                                }, 300);
-                                showFlash('success', `Vehicle "${carTitle}" was permanently deleted from Firestore.`);
-                            } catch (err) {
-                                console.error('Error deleting vehicle from Firestore:', err);
-                                showFlash('danger', 'Failed to delete vehicle: ' + err.message);
-                            }
-                        }
-                    });
-                });
-            }
 
             return card;
         }
