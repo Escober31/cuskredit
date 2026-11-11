@@ -36,10 +36,11 @@
 
     <!-- NAV -->
     <nav
-        class="fixed top-0 left-0 right-0 z-50 h-16 md:h-20 bg-[#07101a]/60 backdrop-blur-lg border-b border-slate-800 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
-            <a href="cusindex.html" class="flex items-center gap-3">
-                <svg viewBox="0 0 100 100" class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" role="img"
+        class="fixed top-0 left-0 right-0 z-50 h-16 md:h-20 bg-[#07101a]/80 backdrop-blur-lg border-b border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <!-- Left: Logo & Tagline -->
+            <a href="cusindex.html" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg">
+                <svg viewBox="0 0 100 100" class="w-10 h-10 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" role="img"
                     aria-label="KreditCars logo">
                     <defs>
                         <clipPath id="hexClipLogoIndex">
@@ -53,30 +54,37 @@
                 </svg>
 
                 <div class="leading-tight">
-                    <div class="text-xl font-black tracking-wider italic">Kredit<span class="text-amber-500">Cars</span>
+                    <div class="text-xl font-black tracking-wider italic text-white">Kredit<span class="text-amber-500">Cars</span>
                     </div>
-                    <div class="text-xs text-cyan-400 uppercase tracking-widest">Trusted Pre-Owned Vehicles</div>
+                    <div class="text-xs text-cyan-400 uppercase tracking-widest font-semibold">Trusted Pre-Owned Vehicles</div>
                 </div>
             </a>
 
-            <div class="hidden md:flex items-center gap-6">
+            <!-- Right: Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-[32px]">
                 <a href="cusindex.html"
-                    class="uppercase text-sm text-amber-500 font-bold hover:text-white transition">Inventory</a>
+                    class="uppercase text-sm font-bold tracking-wider text-amber-500 border-b-2 border-amber-500 pb-1 inline-flex items-center transition-colors">
+                    Inventory
+                </a>
                 <a href="cusinquiry.html"
-                    class="uppercase text-sm text-slate-300 hover:text-white transition">Inquiry</a>
+                    class="uppercase text-sm font-semibold tracking-wider text-slate-400 hover:text-white border-b-2 border-transparent hover:border-slate-500 pb-1 inline-flex items-center transition-colors duration-200">
+                    Inquiry
+                </a>
             </div>
 
-            <button id="mobile-btn" aria-expanded="false" class="md:hidden text-white" aria-label="Toggle navigation">
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-btn" aria-expanded="false" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg hover:bg-slate-800/60 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500" aria-label="Toggle navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor">
-                    <path d="M4 6h16M4 12h16M4 18h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
         </div>
 
+        <!-- Mobile Drawer Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#07101a]/95 backdrop-blur-md border-t border-slate-800">
-            <div class="px-6 py-4 flex flex-col gap-3">
-                <a href="cusindex.html" class="text-amber-500 font-bold py-1">Inventory</a>
-                <a href="cusinquiry.html" class="text-slate-200 hover:text-amber-500 py-1">Inquiry</a>
+            <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3">
+                <a href="cusindex.html" class="text-amber-500 font-bold uppercase text-sm tracking-wider py-1 border-l-2 border-amber-500 pl-3">Inventory</a>
+                <a href="cusinquiry.html" class="text-slate-300 hover:text-white uppercase text-sm font-semibold tracking-wider py-1 pl-3 transition-colors">Inquiry</a>
             </div>
         </div>
     </nav>
@@ -558,7 +566,7 @@
           <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-800 gap-2">
             <span class="text-xl font-bold text-cyan-400">${car.price || '₱0'}</span>
 
-            <a href="detail.html?id=${encodeURIComponent(car.id)}" class="bg-slate-800 hover:bg-amber-500 hover:text-black text-white text-xs font-semibold px-3 py-1.5 rounded transition">
+            <a href="cusdetail.html?id=${encodeURIComponent(car.id)}" class="bg-slate-800 hover:bg-amber-500 hover:text-black text-white text-xs font-semibold px-3 py-1.5 rounded transition">
               Details
             </a>
           </div>
