@@ -263,40 +263,37 @@
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                const first = document.getElementById('first-name').value.trim();
-                const last = document.getElementById('last-name').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const option = document.getElementById('option').value;
+                const first = (document.getElementById('first-name')?.value || '').trim();
+                const last = (document.getElementById('last-name')?.value || '').trim();
+                const phone = (document.getElementById('phone')?.value || '').trim();
+                const option = (document.getElementById('option')?.value || '').trim();
 
                 if (!first || !last || !phone || !['Buy', 'Sell', 'Consign'].includes(option)) {
-                    showMessage('error', 'Please fill all fields and select an option!');
+                    showMessage('error', 'Please fill in all fields and select a valid option (Buy, Sell, or Consign).');
                     return;
                 }
 
                 if (submitBtn) {
                     submitBtn.disabled = true;
-                    submitBtn.textContent = 'Submitting...';
+                    submitBtn.textContent = 'Sending...';
                 }
 
                 try {
-                    // Save to Firestore "customer_requests" collection
-                    await addDoc(collection(db, "customer_requests"), {
-                        first_name: first,
-                        last_name: last,
+                    // Save document to Firestore "quickInquiries" collection
+                    await addDoc(collection(db, "quickInquiries"), {
+                        firstName: first,
+                        lastName: last,
                         phone: phone,
-                        option_type: option,
-                        fullName: `${first} ${last}`.trim(),
+                        option: option,
                         status: 'pending',
                         createdAt: serverTimestamp()
                     });
 
-                    showMessage('success', 'Request submitted successfully!');
+                    showMessage('success', "Thank you! We'll contact you soon.");
                     form.reset();
                 } catch (err) {
-                    console.error('Error submitting inquiry to Firestore:', err);
-                    // Fallback success feedback for client
-                    showMessage('success', 'Request submitted successfully!');
-                    form.reset();
+                    console.error('Error saving to quickInquiries:', err);
+                    showMessage('error', 'Failed to submit inquiry: ' + (err.message || 'Please check your connection and try again.'));
                 } finally {
                     if (submitBtn) {
                         submitBtn.disabled = false;
